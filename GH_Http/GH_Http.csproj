@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http_Request.cs" />
     <Compile Include="RequestsComponent.cs" />
     <Compile Include="GH_HttpInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
