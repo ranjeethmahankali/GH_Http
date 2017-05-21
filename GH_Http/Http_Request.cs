@@ -9,8 +9,10 @@ namespace GH_Http
 {
     public class Http_Request
     {
-        public static string POST(string url, NameValueCollection data)
+        public static string POST(string url, Dictionary<string,string> dict_data)
         {
+            NameValueCollection data = getValues(dict_data);
+
             byte[] result;
             using (WebClient client = new WebClient())
             {
@@ -20,7 +22,7 @@ namespace GH_Http
             return Encoding.UTF8.GetString(result);
         }
 
-        public static string GET(string url, NameValueCollection data)
+        public static string GET(string url, Dictionary<string,string> data)
         {
            string query = queryString(data);
 
@@ -33,7 +35,7 @@ namespace GH_Http
             return result;
         }
 
-        public static string queryString(NameValueCollection data)
+        public static string queryString(Dictionary<string, string> data)
         {
             string query = "";
             int i = 0;
@@ -45,6 +47,17 @@ namespace GH_Http
             }
 
             return query;
+        }
+
+        public static NameValueCollection getValues(Dictionary<string,string> data)
+        {
+            NameValueCollection final = new NameValueCollection();
+            foreach(string key in data.Keys)
+            {
+                final.Add(key, data[key]);
+            }
+
+            return final;
         }
     }
 }
