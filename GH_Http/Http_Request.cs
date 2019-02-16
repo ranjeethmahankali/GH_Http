@@ -24,7 +24,7 @@ namespace GH_Http
 
         public static string GET(string url, Dictionary<string,string> data)
         {
-           string query = queryString(data);
+            string query = queryString(data);
 
             string result;
             using (WebClient client = new WebClient())
